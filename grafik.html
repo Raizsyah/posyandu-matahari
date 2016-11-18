@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Grafik Perkembangan Berat Badan Anak</title>
+	<link href="images/favicon.png" rel="icon"/>
+
+    <link href="libraries/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <linK href="libraries/owl-carousel/owl.carousel.css" rel="stylesheet"/> <!-- Core Owl Carousel CSS File  *	v1.3.3 -->
+    <linK href="libraries/owl-carousel/owl.theme.css" rel="stylesheet"/> <!-- Core Owl Carousel CSS Theme  File  *	v1.3.3 -->
+	<link href="libraries/fonts/font-awesome.min.css" rel="stylesheet"/>
+	<link href="libraries/fonts/elegant/elegant-icon.css" rel="stylesheet"/>
+	<link href="libraries/animate/animate.min.css" rel="stylesheet"/>
+
+	<link href="libraries/video/YTPlayer.css" rel="stylesheet"/>
+
+    <link href="css/components.css" rel="stylesheet"/>
+	<link href="css/header.css" rel="stylesheet"/>
+	<link href="style.css" rel="stylesheet"/>
+	<!--link id="color" href="css/color-schemes/default.css" rel="stylesheet"/-->
+    <link href="css/media.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="js/html5/html5shiv.min.js"></script>
+      <script src="js/html5/respond.min.js"></script>
+    <![endif]-->
+
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<!-- LOADER -->
+	<div id="site-loader" class="load-complete">
+		<div class="load-position">
+			<div class="logo"><img src="images/loading-logo.png" alt="loading-logo"/></div>
+			<h6>Silahkan Tunggu, Memuat data...</h6>
+			<div class="loading">
+				<div class="loading-line"></div>
+				<div class="loading-break loading-dot-1"></div>
+				<div class="loading-break loading-dot-2"></div>
+				<div class="loading-break loading-dot-3"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <div class="header-top">
+		<h1>Grafik Perkembangan Berat Badan Anak</h1>
+	</div> -->
+	
+	<!-- Header Section -->
+	<header id="header-section" class="header-section">
+		<div class="col-md-2 col-sm-2 col-xs-6 logo-block">
+			<a href="#top"><img src="images/logo.png" alt="logo"/></a>
+		</div>
+		<div class="col-md-10 col-sm-12 col-xs-12 menu-block">
+			<nav class="navbar navbar-default primary-navigation" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav pull-right">
+						<li><a href="index.html">Beranda</a></li>
+						<li><a href="index.html">Layanan</a></li>
+						<li><a href="grafik.html">Grafik View</a></li>
+						<li><a href="admin/index.html">Admin</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</nav>
+		</div>
+	</header>
+	<!-- Header Section Over -->
+	<form>
+	<div class="col-md-4 col-sm-6 post">
+	<canvas id="myChart" width="400" height="400"></canvas>
+
+	<script type="text/javascript">
+		var ctx = document.getElementById("myChart");
+		var ctx = document.getElementById("myChart").getContext("2d");
+		var ctx = $("#myChart");
+		var options={};
+
+		var data = {
+		    labels: ["Bulan 1", "Bulan 2", "Bulan 3", "Bulan 4", "Bulan 5", "Bulan 6", "Bulan 7", "Bulan 8", "Bulan 9", "Bulan 10", "Bulan 11", "Bulan 12", "Bulan 13",
+		     "Bulan 14", "Bulan 15", "Bulan 16", "Bulan 17"],
+		    datasets: [
+		        {
+            label: "Batas Maksimal Berat Anak",
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(255, 159, 64, 0.2)",
+            borderColor: "rgba(255, 159, 64, 0.2)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(255, 159, 64, 0.2)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(255, 159, 64, 0.2)",
+            pointHoverBorderColor: "rgba(255, 159, 64, 0.2)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [10, 15, 20, 25, 30, 39, 40, 45, 46, 47, 48, 49, 50, 51, 52, 54, 56],
+            spanGaps: false,
+        },
+
+
+        {
+            label: "Berat Anak",
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [5, 9, 12, 18, 20, 25, 30, 40, 39, 39, 42, 45, 46, 48, 48, 49, 50],
+            spanGaps: false,
+        },
+
+        {
+            label: "Batas minimal Berat Anak",
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(153, 102, 255, 1)",
+            borderColor: "rgba(153, 102, 255, 1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(153, 102, 255, 1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(153, 102, 255, 1)",
+            pointHoverBorderColor: "rgba(153, 102, 255, 1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [2, 5, 8, 10, 15, 19, 20, 30, 29, 32, 35, 40, 41, 42, 43, 44, 45],
+            spanGaps: false,
+        }
+
+
+
+
+
+    ]
+};
+			var myLineChart = new Chart(ctx, {
+			    type: 'line',
+			    data: data,
+			    options: options
+			});
+    </script>
+    </div>
+    </form>
+
+<!-- 	<div class="blog-page">
+		<div class="container no-padding">
+			<div class="blog-inner">
+				<div class="col-md-4 col-sm-6 post">
+					<div class="entry-date">
+						<div class="date">
+							<h2>07</h2>
+							<h4>MAY</h4>
+						</div>
+						<div class="icon">
+							<i class="fa fa-heart"></i>
+							<i class="fa fa-comments"></i>
+						</div>
+					</div>
+					<div class="entry-cover">
+						<img src="images/blog/section/image1.jpg" alt="cover image"/>
+						<div class="entry-header">
+							<a href="blog-post.html" class="entry-title">A BEAUTIFUL VIEW</a>
+						</div>
+						<div class="post-date">
+							<span class="entry-date">November 21, 2013</span>
+							<span class="comments-link"><a href="#">4 COMMENTS</a></span>
+							<span class="post-views"><i class="fa fa-heart"></i> 60</span>
+						</div>
+						<p class="post-item">Vestibulum ac diam sit amet quam vehicu la elementum sed sit amet dui. Praesent sap ien massa, convallis a pellentesque nec, egestas non nisvamus.</p>
+						<a href="blog-post.html" class="read-more">read more</a>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-6 post">
+					<div class="entry-date">
+						<div class="date">
+							<h2>27</h2>
+							<h4>MAY</h4>
+						</div>
+						<div class="icon">
+							<i class="fa fa-heart"></i>
+							<i class="fa fa-comments"></i>
+						</div>
+					</div>
+					<div class="entry-cover">
+						<img src="images/blog/section/image2.jpg" alt="cover image"/>
+						<div class="entry-header">
+							<a href="blog-post.html" class="entry-title">A BEAUTIFUL VIEW</a>
+						</div>
+						<div class="post-date">
+							<span class="entry-date">November 21, 2013</span>
+							<span class="comments-link"><a href="#">4 COMMENTS</a></span>
+							<span class="post-views"><i class="fa fa-heart"></i> 60</span>
+						</div>
+						<p class="post-item">Vestibulum ac diam sit amet quam vehicu la elementum sed sit amet dui. Praesent sap ien massa, convallis a pellentesque nec, egestas non nisvamus.</p>
+						<a href="blog-post.html" class="read-more">read more</a>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-6 post">
+					<div class="entry-date">
+						<div class="date">
+							<h2>06</h2>
+							<h4>MAY</h4>
+						</div>
+						<div class="icon">
+							<i class="fa fa-heart"></i>
+							<i class="fa fa-comments"></i>
+						</div>
+					</div>
+					<div class="entry-cover">
+						<img src="images/blog/section/image3.jpg" alt="cover image"/>
+						<div class="entry-header">
+							<a href="blog-post.html" class="entry-title">A BEAUTIFUL VIEW</a>
+						</div>
+						<div class="post-date">
+							<span class="entry-date">November 21, 2013</span>
+							<span class="comments-link"><a href="#">4 COMMENTS</a></span>
+							<span class="post-views"><i class="fa fa-heart"></i> 60</span>
+						</div>
+						<p class="post-item">Vestibulum ac diam sit amet quam vehicu la elementum sed sit amet dui. Praesent sap ien massa, convallis a pellentesque nec, egestas non nisvamus.</p>
+						<a href="blog-post.html" class="read-more">read more</a>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-6 post">
+					<div class="entry-date">
+						<div class="date">
+							<h2>07</h2>
+							<h4>MAY</h4>
+						</div>
+						<div class="icon">
+							<i class="fa fa-heart"></i>
+							<i class="fa fa-comments"></i>
+						</div>
+					</div>
+					<div class="entry-cover">
+						<img src="images/blog/section/image4.jpg" alt="cover image"/>
+						<div class="entry-header">
+							<a href="blog-post.html" class="entry-title">A BEAUTIFUL VIEW</a>
+						</div>
+						<div class="post-date">
+							<span class="entry-date">November 21, 2013</span>
+							<span class="comments-link"><a href="#">4 COMMENTS</a></span>
+							<span class="post-views"><i class="fa fa-heart"></i> 60</span>
+						</div>
+						<p class="post-item">Vestibulum ac diam sit amet quam vehicu la elementum sed sit amet dui. Praesent sap ien massa, convallis a pellentesque nec, egestas non nisvamus.</p>
+						<a href="blog-post.html" class="read-more">read more</a>
+					</div>
+				</div>
+				
+				
+				<div class="col-md-4 col-sm-6 post">
+					<div class="entry-date">
+						<div class="date">
+							<h2>27</h2>
+							<h4>MAY</h4>
+						</div>
+						<div class="icon">
+							<i class="fa fa-heart"></i>
+							<i class="fa fa-comments"></i>
+						</div>
+					</div>
+					<div class="entry-cover">
+						<img src="images/blog/section/image5.jpg" alt="cover image"/>
+						<div class="entry-header">
+							<a href="blog-post.html" class="entry-title">A BEAUTIFUL VIEW</a>
+						</div>
+						<div class="post-date">
+							<span class="entry-date">November 21, 2013</span>
+							<span class="comments-link"><a href="#">4 COMMENTS</a></span>
+							<span class="post-views"><i class="fa fa-heart"></i> 60</span>
+						</div>
+						<p class="post-item">Vestibulum ac diam sit amet quam vehicu la elementum sed sit amet dui. Praesent sap ien massa, convallis a pellentesque nec, egestas non nisvamus.</p>
+						<a href="blog-post.html" class="read-more">read more</a>
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-6 post">
+					<div class="entry-date">
+						<div class="date">
+							<h2>06</h2>
+							<h4>MAY</h4>
+						</div>
+						<div class="icon">
+							<i class="fa fa-heart"></i>
+							<i class="fa fa-comments"></i>
+						</div>
+					</div>
+					<div class="entry-cover">
+						<img src="images/blog/section/image6.jpg" alt="cover image"/>
+						<div class="entry-header">
+							<a href="blog-post.html" class="entry-title">A BEAUTIFUL VIEW</a>
+						</div>
+						<div class="post-date">
+							<span class="entry-date">November 21, 2013</span>
+							<span class="comments-link"><a href="#">4 COMMENTS</a></span>
+							<span class="post-views"><i class="fa fa-heart"></i> 60</span>
+						</div>
+						<p class="post-item">Vestibulum ac diam sit amet quam vehicu la elementum sed sit amet dui. Praesent sap ien massa, convallis a pellentesque nec, egestas non nisvamus.</p>
+						<a href="blog-post.html" class="read-more">read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ -->	
+	<footer id="footer-section" class="footer-section">
+		<div class="back-home">
+			<a href="index.html">Kembali Ke Beranda</a>
+		</div>
+	</footer>
+	
+		
+	<!-- jQuery Include -->
+	<script src="libraries/jquery.min.js"></script>	
+	<script src="libraries/jquery.easing.min.js"></script><!-- Easing Animation Effect -->
+
+	<script src="libraries/bootstrap/bootstrap.min.js"></script> <!-- Core Bootstrap v3.2.0 -->
+	<script src="libraries/bootstrap/ie-emulation-modes-warning.js"></script> <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	<script src="libraries/bootstrap/ie10-viewport-bug-workaround.js"></script> <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<!-- Font Elegant -->
+		<!--[if lte IE 7]><script src="libraries/fonts/elegant/lte-ie7.js"></script><![endif]-->
+	
+	<script src="libraries/portfolio-filter/jquery.quicksand.js"></script> <!-- Quicksand v1.4 -->
+	<script src="libraries/jquery.superslides.min.js"></script> <!-- Superslides - v0.6.3-wip -->
+
+	<script src="libraries/roundabout.js"></script> <!-- service Rounded slider -->
+	<script src="libraries/roundabout_shapes.js"></script> <!-- service Rounded slider -->
+	
+	<script src="libraries/jquery.animateNumber.min.js"></script> <!-- Used for Animated Numbers -->
+	<script src="libraries/jquery.appear.js"></script> <!-- It Loads jQuery when element is appears -->
+	<script src="libraries/jquery.knob.js"></script> <!-- Used for Loading Circle -->
+	
+	<script src="libraries/wow.min.js"></script>
+	
+	<script src="libraries/owl-carousel/owl.carousel.min.js"></script> <!-- Core Owl Carousel CSS File  *	v1.3.3 -->
+	<script src="libraries/video/jquery.mb.YTPlayer.js"></script>
+	
+	<!-- Customized Scripts -->
+	<script src="js/functions.js"></script>
+
+</body>
+</html>
